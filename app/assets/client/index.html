@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />-->
+    <meta name="viewport" content="width=360; user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="jb/jquery.mobile.flatui.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="jb/theme-classic.css"/>-->
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="css/ideascroll.css"/>
+    <link rel="stylesheet" type="text/css" href="css/ideafoodlistview.css"/>
+    <script type="text/javascript" src="jb/jquery.min.js"></script>
+    <script type="text/javascript" src="jb/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="jslib/jqueryform.js"></script>
+    <script type="text/javascript" src="jslib/hammer.js"></script>
+    <script type="text/javascript" src="js/commontools.js"></script>
+    <script type="text/javascript" src="js/jbtool.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/user.js"></script>
+    <script type="text/javascript" src="js/yewu.js"></script>
+    <script type="text/javascript" src="jslib/ideascroll.js"></script>
+    <title>点餐</title>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+<!--<div data-role="page" data-control-title="Login" id="blankpage" data-theme="f">
+</div>-->
+<!--用户模块---------------------------------------------------------------------------------->
+<div data-role="page" data-control-title="Login" id="loginpage" data-theme="e">
+    <div data-role="header" data-theme="e" data-position="fixed">
+        <h1 class="ui-title">
+            用户登录
+        </h1>
+    </div>
+    <div role="main" class="ui-content">
+        <form id="loginform" name="loginform">
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    用户名:
+                </label>
+                <input id="lusername" name="username" placeholder="" value="" type="text">
+            </div>
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    密码:
+                </label>
+                <input id="lpasswd" name="passwd" placeholder="" value="" type="password">
+            </div>
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label for="remember">
+                    自动登录：
+                </label>
+                <select name="remember" id="remember" data-theme="" data-role="slider">
+                    <option value="0">
+                        Off
+                    </option>
+                    <option selected="selected" value="1">
+                        On
+                    </option>
+                </select>
+            </div>
+        </form>
+        <a href="#" onclick="login();" class="ui-btn ui-btn-c">
+            登录
+        </a>
+        <a href="#" onclick="toRegister();" class="ui-btn ui-btn-c">
+            注册
+        </a>
+        <!--<a href="index2.html" data-ajax="false">餐厅登录</a>-->
+    </div>
+</div>
+
+<div data-role="page" data-theme="e" data-control-title="Register" id="registerpage">
+    <div data-theme="e" data-role="header" data-position="fixed">
+        <h1 class="ui-title">
+            快速注册
+        </h1>
+    </div>
+    <div role="main" class="ui-content">
+        <form id="registerform">
+            <!--<div  class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    头像：
+                </label>
+                <img  id="rmyImage1" src="" style="width: 50%;" >
+                <a href="#" onclick="getFilePic(0,'rmyImage1');" class="ui-btn ui-btn-g">
+                    选择图片
+                </a>
+                <a href="#" onclick="getFilePic(1,'rmyImage1');" class="ui-btn ui-btn-d">
+                    拍照
+                </a>
+            </div>-->
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    用户名:
+                </label>
+                <input name="username" placeholder="必填" value="" type="text">
+            </div>
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    密码:
+                </label>
+                <input name="passwd" placeholder="必填" value="" type="password">
+            </div>
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    密码重复:
+                </label>
+                <input name="passwd2" placeholder="必填" value="" type="password">
+            </div>
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    电话:
+                </label>
+                <input name="tel" placeholder="必填" value="" type="tel">
+            </div>
+            <!--<div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    地址:
+                </label>
+                <input name="address" placeholder="必填" value="" type="text">
+            </div>-->
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    QQ:
+                </label>
+                <input name="qq" placeholder="" value="" type="text">
+            </div>
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    微信:
+                </label>
+                <input name="wechat" placeholder="" value="" type="text">
+            </div>
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    邮箱:
+                </label>
+                <input name="email" placeholder="" value="" type="email">
+            </div>
+            <div class="ui-field-contain" data-controltype="dateinput">
+                <label>
+                    生日:
+                </label>
+                <input name="birth" placeholder="" value="" type="date">
+            </div>
+            <div class="ui-field-contain" data-controltype="selectmenu">
+                <label>
+                    性别:
+                </label>
+                <select name="sex">
+                    <option value="男">
+                        男
+                    </option>
+                    <option value="女">
+                        女
+                    </option>
+                </select>
+            </div>
+        </form>
+        <a href="#" onclick="register();" class="ui-btn ui-btn-c">提交</a>
+        <a href="#" onclick="toLogin();" class="ui-btn ui-btn-c">取消</a>
+    </div>
+</div>
+
+<div data-role="page" data-theme="e" data-control-title="Userinfo" id="userinfopage">
+    <div data-theme="e" data-role="header" data-position="fixed">
+        <h1 class="ui-title">
+              个人信息
+        </h1>
+        <a href="#" onclick="goback();" data-icon="back" data-iconpos="left" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left">
+            返回
+        </a>
+    </div>
+    <div role="main" class="ui-content">
+        <form id="userform">
+            <input name="img" id="vimg" type="hidden">
+            <div id="gereninfo" class="ui-field-contain" data-controltype="textinput">
+                <label id="vusername">
+                    用户名:
+                </label>
+            </div>
+            <!--<div  class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    头像：
+                </label>
+                <img  id="rmyImage2" src="" style="width: 50%;" >
+                <a href="#" onclick="getFilePic(0,'rmyImage2');" class="ui-btn ui-btn-g">
+                    选择图片
+                </a>
+                <a href="#" onclick="getFilePic(1,'rmyImage2');" class="ui-btn ui-btn-d">
+                    拍照
+                </a>
+            </div>-->
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    电话:
+                </label>
+                <input name="tel" id="vtel" placeholder="" value="" type="tel">
+            </div>
+            <!--<div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    地址:
+                </label>
+                <input id="vaddress" name="address" placeholder="必填" value="" type="text">
+            </div>-->
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    QQ:
+                </label>
+                <input name="qq" id="vqq" placeholder="" value="" type="text">
+            </div>
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    微信:
+                </label>
+                <input name="wechat" id="vwechat" placeholder="" value="" type="text">
+            </div>
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    邮箱:
+                </label>
+                <input name="email" id="vemail" placeholder="" value="" type="email">
+            </div>
+            <div class="ui-field-contain" data-controltype="dateinput">
+                <label>
+                    生日:
+                </label>
+                <input name="birth" id="vbirth" placeholder="" value="" type="date">
+            </div>
+            <div class="ui-field-contain" data-controltype="selectmenu">
+                <label>
+                    性别:
+                </label>
+                <select name="sex" id="vsex">
+                    <option value="男" selected="selected">
+                        男
+                    </option>
+                    <option value="女">
+                        女
+                    </option>
+                </select>
+            </div>
+        </form>
+
+        <a href="#" onclick="updateUserInfo();" class="ui-btn ui-btn-c">修改</a>
+        <a href="#" onclick="goback();" class="ui-btn ui-btn-c">取消</a>
+
+    </div>
+    <div data-role="footer" data-position="fixed" data-theme="e">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="javascript:toGoods();" data-icon="home">首页</a></li>
+                <li><a href="javascript:toMyBill();" data-icon="tag">我的订单</a></li>
+                <li><a href="javascript:showCar();" data-icon="shop">购物车</a></li>
+                <li><a href="javascript:myinfo();" data-icon="user">个人信息</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<div data-role="page" data-theme="e" data-control-title="ChangePasswd" id="passwdpage">
+    <div data-theme="e" data-role="header" data-position="fixed">
+        <h1 class="ui-title">
+                 修改密码
+        </h1>
+        <a href="#" onclick="goback();" data-icon="back" data-iconpos="left" class="ui-btn ui-btn-left ui-icon-edit ui-btn-icon-left">
+                  返回
+        </a>
+    </div>
+    <div role="main" class="ui-content">
+        <form id="passwdform">
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label id="pusername">
+                    用户名:
+                </label>
+            </div>
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    原始密码:
+                </label>
+                <input name="oldpasswd" placeholder="" value="" type="password">
+            </div>
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    新密码
+                </label>
+                <input name="passwd" placeholder="" value="" type="password">
+            </div>
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    密码重复
+                </label>
+                <input name="passwd2" placeholder="" value="" type="password">
+            </div>
+        </form>
+        <a href="#" onclick="changePasswd();" class="ui-btn ui-btn-c">修改</a>
+        <a href="#" onclick="goback();" class="ui-btn ui-btn-c">取消</a>
+    </div>
+</div>
+
+
+<div data-role="page" data-theme="e" id="morepage">
+    <div data-theme="e" data-role="header" data-position="fixed">
+        <h1 class="ui-title">
+            我的
+        </h1>
+
+    </div>
+    <div role="main" class="ui-content">
+        <ul data-role="listview"  data-inset="false">
+            <li onclick="myinfo();">个人信息</li>
+            <li onclick="javascript:changePage('fuwupage');">呼叫服务</li>
+            <li onclick="toDingzuo(1);">订座</li>
+            <li onclick="toDingzuo(2);">排队</li>
+            <li onclick="toChangePasswd();">修改密码</li>
+            <li onclick="logout();">注销登录</li>
+            <li onclick="exitApp();">退出</li>
+        </ul>
+    </div>
+    <div data-role="footer" data-position="fixed" style="overflow: hidden;">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="javascript:toGoods();" data-icon="home">首页</a></li>
+                <li><a href="javascript:toMyBill();" data-icon="tag">我的订单</a></li>
+                <li><a href="javascript:showCar();" data-icon="shop">购物车</a></li>
+                <li><a href="javascript:toMore();" data-icon="user">我的</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div data-role="page" data-theme="e" id="addresspage">
+    <div data-theme="e" data-role="header" data-position="fixed">
+        <h1 class="ui-title">
+            地址列表
+        </h1>
+        <a href="#" onclick="toAddressMg();" data-iconpos="left" class="ui-btn ui-btn-right ui-icon-plus ui-btn-icon-left">
+            新增
+        </a>
+        <a href="#" onclick="toMain();" data-icon="back" data-iconpos="left" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left">
+            返回
+        </a>
+    </div>
+    <div role="main" class="ui-content">
+        <ul id="addresss" data-role="listview" data-inset="false" data-theme="c" data-split-icon="delete">
+
+        </ul>
+    </div>
+</div>
+
+<div data-role="page" data-theme="e" id="addressmgpage">
+    <div data-theme="e" data-role="header" data-position="fixed">
+        <h1 class="ui-title">
+            地址管理
+        </h1>
+        <a href="#" onclick="goback();" data-icon="back" data-iconpos="left" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left">
+            返回
+        </a>
+    </div>
+    <div role="main" class="ui-content">
+        <form id="addressform">
+            <input name="action" id="addressaction" type="hidden">
+            <input name="id" id="addressid" type="hidden">
+            <div class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    详细地址:
+                </label>
+                <input name="title" id="title" placeholder="" value="" type="text">
+            </div>
+        </form>
+
+        <a href="#" onclick="saveAddress();" class="ui-btn ui-btn-c">保存</a>
+    </div>
+</div>
+<!--用户模块结束--------------------------------------------------------------------------------------------------------------------------------------->
+
+
+<div data-role="page" data-theme="e" id="shopspage">
+    <div data-theme="e" data-role="header" data-position="fixed">
+        <h1 class="ui-title">
+            餐厅列表
+        </h1>
+
+        <a href="#" onclick="toMyBill();" data-iconpos="right" class="ui-btn ui-btn-right ui-icon-user ui-btn-icon-left">
+            我的订单
+        </a>
+    </div>
+    <div role="main" class="ui-content">
+        <button data-theme="e" onclick="toGoods();">进入菜品列表</button>
+        <!--<button data-theme="e" onclick="toTuijian();">推荐菜品列表</button>-->
+        <ul id="shops" data-role="listview" data-theme="c" data-inset="true">
+
+        </ul>
+    </div>
+
+</div>
+
+
+<div data-role="page" data-theme="e" id="mainpage">
+    <div  data-role="header" data-position="fixed">
+        <h1 class="ui-title">
+            菜品列表
+        </h1>
+        <!--<a href="#" onclick="toShops();" class="ui-btn ui-btn-right ui-icon-location ui-btn-icon-left">
+            选择餐厅
+        </a>-->
+        <!--<a href="#popupMenu" data-rel="popup" data-theme="b" data-transition="pop"  class="ui-btn ui-btn-left ui-icon-bars ui-btn-icon-left">
+            选项
+        </a>
+
+        <div data-role="popup" id="popupMenu" data-theme="c">
+            <ul data-role="listview" data-theme="c"  data-inset="true" style="min-width:210px;">
+                &lt;!&ndash;<li><a href="#" onclick="setTheme();">改变主题</a></li>&ndash;&gt;
+                <li><a href="#" onclick="toAddressPage();">地址管理</a></li>
+                <li><a href="#" onclick="myinfo();">个人信息</a></li>
+                <li><a href="#" onclick="toMyBill();">我的订单</a></li>
+                <li><a href="#" onclick="showCar();">购物车</a></li>
+                <li><a href="#" onclick="toChangePasswd();">修改密码</a></li>
+                <li><a href="#" onclick="logout();">注销登录</a></li>
+                <li><a href="#" onclick="exitApp();">退出</a></li>
+            </ul>
+        </div>-->
+
+    </div>
+    <!--<div role="main" class="ui-content">
+        <select id="type" data-theme="c" onchange="refreshGood();">
+            <option value="">请选择分类</option>
+        </select>
+        <ul id="goods" data-role="listview" data-theme="c" data-inset="true" >
+
+        </ul>
+    </div>-->
+    <!--<div id="maincontainer">
+        <div id="scrollcontainer" class="scrollcontainer">
+            <div class="scroller" id="ideascroller">
+
+            </div>
+            <div class="idxptcontainer" id="idxptcontainer">
+
+            </div>
+        </div>
+    </div>-->
+
+    <div role="main" class="ui-content">
+        <input type="search" placeholder="输入关键字搜索..." oninput="filterGood();" id="searchinput">
+        <select data-mini="true" data-inline="true" id="type" data-theme="c" onchange="refreshGood();">
+            <option value="">请选择分类</option>
+        </select>
+        <select data-mini="true" data-inline="true" id="type2" data-theme="c" onchange="refreshGood();">
+            <option value="">排序方式</option>
+            <option value="xiaoliang">销量</option>
+            <option value="price">价格</option>
+        </select>
+        <ul id="goods" data-role="none" class="ideafoodlist">
+
+        </ul>
+    </div>
+    <div data-role="footer" data-position="fixed" data-theme="e">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="javascript:toGoods();" data-icon="home">首页</a></li>
+                <li><a href="javascript:toMyBill();" data-icon="tag">我的订单</a></li>
+                <li><a href="javascript:showCar();" data-icon="shop">购物车</a></li>
+                <li><a href="javascript:toMore();" data-icon="user">我的</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div data-role="page" data-theme="e" id="tuijianpage">
+    <div data-theme="e" data-role="header" data-position="fixed">
+        <h1 class="ui-title">
+            菜品推荐
+        </h1>
+        <a href="#" onclick="goback();" data-iconpos="left" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left">
+            返回
+        </a>
+    </div>
+
+
+    <div role="main" class="ui-content">
+        <ul id="tuijianlist" data-role="none" class="ideafoodlist">
+
+        </ul>
+    </div>
+
+</div>
+
+
+<div data-role="page" data-theme="e" data-control-title="Register" id="goodpage">
+    <div data-theme="e" data-role="header" data-position="fixed">
+        <h1 class="ui-title">
+            详细信息
+        </h1>
+        <a href="#" onclick="goback();" data-iconpos="left" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left">
+            返回
+        </a>
+    </div>
+    <div role="main" class="ui-content">
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label id="gname2">
+
+            </label>
+        </div>
+        <div class="ui-field-contain" data-controltype="textinput">
+            <img width="100%" id="gimg2">
+        </div>
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label id="gnote2">
+
+            </label>
+        </div>
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label id="gprice2">
+
+            </label>
+        </div>
+        <div style="display: none;" class="ui-field-contain" data-controltype="textinput">
+            <label for="count">数量:</label>
+            <input type="range" name="count" id="count" value="1" min="1" max="10" step="1" data-highlight="true">
+        </div>
+        <div id="canbuy">
+            <a href="#" onclick="tijiao();" class="ui-btn ui-btn-c">提交订单</a>
+            <a href="#" onclick="addToCar();" class="ui-btn ui-btn-c">加入购物车</a>
+        </div>
+
+        <div class="ui-field-contain" data-controltype="textinput">
+            <a href="javascript:zan();"> <img src="images/zan.png" height="50px"></a><span id="zan"></span>
+        </div>
+
+        <ul id="replays" data-role="listview" data-theme="c" data-inset="true">
+
+        </ul>
+        <div id="canreplay">
+
+            <div style="height: 55px;line-height: 55px;margin-top: 40px;position: relative;">
+                <span>综合评星</span>
+                <div class="starcontainer2">
+                    <div class="pingjiastar2"></div>
+                    <div id="starwidht" class="pingjiastarup2" style="width: 175px;"></div>
+                    <div id="pinglunclick" class="pingjiastarclick"></div>
+                </div>
+            </div>
+            <!--<div  class="ui-field-contain" data-controltype="textinput">
+                <label>
+                    配图：
+                </label>
+                <img  id="rmyImage3" src="" style="width: 50%;" >
+                <a href="#" onclick="getFilePic(0,'rmyImage3');" class="ui-btn ui-btn-g">
+                    选择图片
+                </a>
+                <a href="#" onclick="getFilePic(1,'rmyImage3');" class="ui-btn ui-btn-d">
+                    拍照
+                </a>
+            </div>-->
+            <textarea id="rnote"></textarea>
+            <a href="#" onclick="addReplay();" class="ui-btn ui-btn-c">
+                评价
+            </a>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div data-role="page" data-theme="e" id="carspage">
+    <div data-theme="e" data-role="header" data-position="fixed">
+        <h1 class="ui-title">
+            我的购物车
+        </h1>
+        <a href="#" onclick="goback();" data-iconpos="left" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left">
+            返回
+        </a>
+        <a href="#" onclick="tijiaocar();" data-iconpos="right" class="ui-btn ui-btn-right ui-icon-check ui-btn-icon-left">
+            提交订单
+        </a>
+
+    </div>
+    <div role="main" class="ui-content">
+        <!--<ul id="cars" data-split-icon="delete" data-role="listview" data-theme="c" data-inset="true">
+
+        </ul>-->
+        <ul id="cars" data-role="none" class="ideafoodlist">
+
+        </ul>
+    </div>
+    <div data-role="footer" data-position="fixed" data-theme="e">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="javascript:toGoods();" data-icon="home">首页</a></li>
+                <li><a href="javascript:toMyBill();" data-icon="tag">我的订单</a></li>
+                <li><a href="javascript:showCar();" data-icon="shop">购物车</a></li>
+                <li><a href="javascript:toMore();" data-icon="user">我的</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div data-role="page" data-theme="e" id="mybillpage">
+    <div data-theme="e" data-role="header" data-position="fixed">
+        <h1 class="ui-title">
+            我的订单
+        </h1>
+        <a href="#" onclick="toMain();" data-iconpos="left" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left">
+            返回
+        </a>
+
+
+    </div>
+    <div role="main" class="ui-content">
+        <ul id="bills" data-role="listview" data-theme="c" data-inset="true">
+
+        </ul>
+    </div>
+    <div data-role="footer" data-position="fixed" data-theme="e">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="javascript:toGoods();" data-icon="home">首页</a></li>
+                <li><a href="javascript:toMyBill();" data-icon="tag">我的订单</a></li>
+                <li><a href="javascript:showCar();" data-icon="shop">购物车</a></li>
+                <li><a href="javascript:toMore();" data-icon="user">我的</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div data-role="page" data-theme="e" id="billgoodspage">
+    <div data-theme="e" data-role="header" data-position="fixed">
+        <h1 class="ui-title">
+            订单菜品列表
+        </h1>
+        <a href="#" onclick="toMyBill();" data-iconpos="left" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left">
+            返回
+        </a>
+
+    </div>
+    <div role="main" class="ui-content">
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label id="btotal"></label>
+        </div>
+        <!--<div class="ui-field-contain" data-controltype="textinput">
+            <label id="bfenqi"></label>
+        </div>-->
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label id="bndate"></label>
+        </div>
+        <!--<div class="ui-field-contain" data-controltype="textinput">
+            <label id="bmoney"></label>
+        </div>-->
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label style="color: red;" id="statecn"></label>
+        </div>
+        <label>订单商品列表</label>
+        <ul id="billgoods" data-role="listview" data-theme="c" data-inset="true" >
+
+        </ul>
+        <div id="paydiv" class="ui-field-contain" data-controltype="textinput">
+            <label for="payway1">支付宝</label>
+            <input id="payway1" type="radio" value="1" name="payway" data-theme="c">
+            <label for="payway2">微信支付</label>
+            <input type="radio" id="payway2" value="2" name="payway" data-theme="c">微信支付
+            <a href="#popupLogin" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-f" >立即付款</a>
+            <button data-theme="e" onclick="payBill();">现金付款</button>
+        </div>
+        <div id="surediv" class="ui-field-contain" data-controltype="textinput">
+            <button data-theme="e" onclick="cuidan();">催单</button>
+            <button data-theme="e" onclick="sureBill();">确认美食</button>
+        </div>
+
+
+
+        <div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all">
+                <form>
+                    <div style="padding:10px 20px;">
+                        <h3>输入信息:</h3>
+                        <label for="un" class="ui-hidden-accessible">账号:</label>
+                        <input type="text" name="user" id="un" value="" placeholder="账号" data-theme="a">
+                        <label for="pw" class="ui-hidden-accessible">密码:</label>
+                        <input type="password" name="pass" id="pw" value="" placeholder="密码" data-theme="a">
+                        <!--<button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">确认支付</button>-->
+                        <a href="#" class="ui-btn ui-btn-f" onclick="payBill();">确认支付</a>
+                    </div>
+                </form>
+        </div>
+    </div>
+
+</div>
+
+
+<div data-role="page" data-control-title="Login" id="fuwupage" data-theme="e">
+    <div data-role="header" data-theme="e" data-position="fixed">
+        <h1 class="ui-title">
+            呼叫服务
+        </h1>
+        <a href="#" onclick="goback();" data-iconpos="left" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left">
+            返回
+        </a>
+    </div>
+    <div role="main" class="ui-content" style="text-align: center;">
+        <div style="background-image: url('images/js.png');background-size: 100% 100%;width: 150px;height: 150px;margin-left: 100px;margin-top: 50px;" onclick="callFuwu(1);"></div>
+        <div style="background-image: url('images/qi.png');background-size: 100% 100%;width: 150px;height: 150px;margin-left: 100px;margin-top: 50px;" onclick="callFuwu(2);"></div>
+    </div>
+</div>
+
+
+<div data-role="page" data-control-title="Login" id="infopage" data-theme="e">
+    <div data-role="header" data-theme="e" data-position="fixed">
+        <h1 class="ui-title">
+            填写信息
+        </h1>
+        <a href="#" onclick="goback();" data-iconpos="left" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left">
+            返回
+        </a>
+    </div>
+    <div role="main" class="ui-content">
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label>
+                电话:
+            </label>
+            <input id="infotel" name="infotel" placeholder="" value="" type="text">
+        </div>
+        <div class="ui-field-contain" data-controltype="textinput">
+            <!--<label>
+                地址:
+            </label>
+            <input id="infoaddress" name="infoaddress" placeholder="" value="" type="text">-->
+
+            <input id="iscar" type="hidden">
+        </div>
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label>
+                备注:
+            </label>
+            <textarea id="infobeizhu" name="infobeizhu"></textarea>
+        </div>
+
+        <a href="#" onclick="youketijiao();" class="ui-btn ui-btn-c">
+            提交
+        </a>
+    </div>
+</div>
+
+<div data-role="page" data-control-title="Login" id="infopage2" data-theme="e">
+    <div data-role="header" data-theme="e" data-position="fixed">
+        <h1 class="ui-title">
+            填写备注信息
+        </h1>
+        <a href="#" onclick="goback();" data-iconpos="left" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left">
+            返回
+        </a>
+    </div>
+    <div role="main" class="ui-content">
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label id="ntel">
+                电话:
+            </label>
+
+        </div>
+        <div class="ui-field-contain" data-controltype="textinput">
+            <!--<label>
+                地址:
+            </label>
+            <select id="naddress">
+
+            </select>-->
+            <label>选择桌号：</label>
+            <select id="zhuohao" name="zhuohao">
+
+            </select>
+        </div>
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label>
+                备注:
+            </label>
+            <textarea id="infobeizhu2" name="infobeizhu"></textarea>
+            <input id="iscar2" type="hidden">
+        </div>
+
+        <a href="#" onclick="usertijiao();" class="ui-btn ui-btn-c">
+            提交
+        </a>
+    </div>
+</div>
+
+
+<div data-role="page" data-theme="e" id="dingzuopage">
+    <div data-theme="e" data-role="header" data-position="fixed">
+        <h1 class="ui-title" id="dztitle">
+            我的订座列表
+        </h1>
+        <a id="dzbtn" href="#" onclick="toAddDingzuo();" data-iconpos="left" class="ui-btn ui-btn-right ui-icon-plus ui-btn-icon-left">
+            立即订座
+        </a>
+        <a href="#" onclick="toMore();" data-iconpos="left" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left">
+            返回
+        </a>
+
+    </div>
+    <div role="main" class="ui-content">
+        <div id="paiduiinfo" style="color: red;"></div>
+        <ul id="dingzuolist" data-role="listview" data-theme="e" data-inset="true" >
+
+        </ul>
+    </div>
+
+</div>
+
+<div data-role="page" data-control-title="dingzuo" data-theme="e" id="dingzuo">
+    <div data-role="header">
+        <h1 class="ui-title" id="dztitle2">
+            填写订座信息
+        </h1>
+
+        <a href="#" onclick="toDingzuo();" data-iconpos="left" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left">
+            返回
+        </a>
+    </div>
+    <div role="main" class="ui-content">
+        <form id="dingzuoform">
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label for="xingming">
+                姓名:
+            </label>
+            <input name="xingming" id="xingming" placeholder="" value="" type="text">
+        </div>
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label for="shouji">
+                手机:
+            </label>
+            <input name="shouji" id="shouji" placeholder="" value="" type="text">
+        </div>
+        <div id="ndate" class="ui-field-contain" data-controltype="selectmenu">
+            <label for="dateselect">
+                日期
+            </label>
+            <select id="dateselect" name="todate">
+
+            </select>
+        </div>
+        <div id="ntime" class="ui-field-contain" data-controltype="textinput">
+            <label for="shijian">
+                时间:
+            </label>
+            <select id="shijian" name="shijian">
+                <option value="">请选择</option>
+                <option value="8:00~10:00">8:00~10:00</option>
+                <option value="10:00~12:00">10:00~12:00</option>
+                <option value="12:00~14:00">12:00~14:00</option>
+                <option value="14:00~16:00">14:00~16:00</option>
+                <option value="16:00~18:00">16:00~18:00</option>
+                <option value="18:00~20:00">18:00~20:00</option>
+                <option value="20:00~22:00">20:00~22:00</option>
+            </select>
+        </div>
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label for="renshu">
+                人数:
+            </label>
+            <input name="renshu" id="renshu" placeholder="" value="" type="text">
+        </div>
+       <div class="ui-field-contain" data-controltype="selectmenu">
+            <label for="mendianselect">
+                座位条件:
+            </label>
+            <select id="mendianselect" name="">
+                <option value="随意">随意</option>
+                <option value="包间">包间</option>
+                <option value="靠窗">靠窗</option>
+            </select>
+        </div>
+        <div class="ui-field-contain" data-controltype="textarea">
+            <label for="beizhu">
+                备注:
+            </label>
+            <textarea name="beizhu" id="beizhu" placeholder=""></textarea>
+        </div>
+        <a href="#" onclick="saveDingzuo();" class="ui-btn ">
+            提交
+        </a>
+        </form>
+    </div>
+
+    <div data-theme="e" data-role="footer" data-position="fixed">
+
+    </div>
+</div>
+
+<div data-role="page" data-control-title="dingzuo" id="mydingzuo">
+    <div data-theme="a" data-role="header">
+        <h1 class="ui-title">
+            订座信息
+        </h1>
+    </div>
+    <div role="main" class="ui-content">
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label id="xingming2">
+                姓名:
+            </label>
+        </div>
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label id="shouji2">
+                手机:
+            </label>
+        </div>
+        <div class="ui-field-contain" data-controltype="selectmenu">
+            <label id="dateselect2">
+                日期
+            </label>
+        </div>
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label id="shijian2">
+                时间:
+            </label>
+        </div>
+        <div class="ui-field-contain" data-controltype="textinput">
+            <label id="renshu2">
+                人数:
+            </label>
+        </div>
+        <div class="ui-field-contain" data-controltype="selectmenu">
+            <label id="mendianselect2">
+                门店:
+            </label>
+        </div>
+        <div class="ui-field-contain" data-controltype="textarea">
+            <label id="beizhu2">
+                备注:
+            </label>
+        </div>
+
+    </div>
+    <!--<div data-theme="a" data-role="footer" data-position="fixed">
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li>
+                    <a href="#mendian" data-transition="flow" data-theme="" data-icon="home">
+                        门店
+                    </a>
+                </li>
+                <li>
+                    <a href="#dingzuo" data-transition="flip" data-theme="" data-icon="star">
+                        订座
+                    </a>
+                </li>
+                <li>
+                    <a href="#diancan" data-transition="turn" data-theme="" data-icon="plus">
+                        点餐
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:wode();" data-transition="flow" data-theme="" data-icon="gear">
+                        我的
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>-->
+</div>
+<!-----------------------------------------欢迎页,和图片放大查看page----------------------------------------------------------->
+<div data-role="page" data-control-title="imgshow" id="imgshow">
+    <div id="imgcontaner">
+        <img style="width: 100%;position: absolute;top: 0px;left: 0px" id="showimg">
+        <a href="#" onclick="goback();" data-icon="back" data-iconpos="left" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left">
+            返回
+        </a>
+    </div>
+</div>
+<div data-role="page" data-control-title="imgshow" id="welcomepage1">
+    <div id="welcome1">
+        <img src="images/1.jpg" style="width: 100%;height:100%;position: absolute;top: 0px;left: 0px">
+    </div>
+</div>
+<div data-role="page" data-control-title="imgshow" id="welcomepage2">
+    <div id="welcome2">
+        <img src="images/1.jpg" style="width: 100%;height:100%;position: absolute;top: 0px;left: 0px">
+    </div>
+</div>
+<div data-role="page" data-control-title="imgshow" id="welcomepage3">
+    <div id="welcome3">
+        <img src="images/1.jpg" style="width: 100%;height:100%;position: absolute;top: 0px;left: 0px">
+    </div>
+</div>
+<div data-role="page" data-control-title="imgshow" id="welcomepage4">
+    <div id="welcome4">
+        <img src="images/1.jpg" style="width: 100%;height:100%;position: absolute;top: 0px;left: 0px">
+    </div>
+</div>
+<div data-role="page" data-control-title="imgshow" id="welcomepage5">
+    <div id="welcome5">
+        <img src="images/1.jpg" style="width: 100%;height:100%;position: absolute;top: 0px;left: 0px">
+    </div>
+</div>
+<div data-role="page" data-control-title="imgshow" id="welcomepage6">
+    <div id="welcome6">
+        <img src="images/1.jpg" style="width: 100%;height:100%;position: absolute;top: 0px;left: 0px">
+    </div>
+</div>
+</body>
+
+<script type="text/javascript" src="../cordova/cordova.js"></script>
+<script type="text/javascript" src="cordovatool/cordovatools.js"></script>
+</html>
